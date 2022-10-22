@@ -1,4 +1,4 @@
-### [Makers Academy](http://www.makersacademy.com) - Pair Programming Project (Week-5)
+### [Makers Academy](http://www.makersacademy.com) - Pair Programming Project [Week-6](https://github.com/makersacademy/javascript-fundamentals/blob/main/challenges/04_thermostat.md)
 
 Thermostat JavaScript Challenge
 -
