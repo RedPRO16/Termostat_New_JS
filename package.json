@@ -1,0 +1,25 @@
+{
+  "name": "thermostat_new_js",
+  "version": "1.0.0",
+  "description": "Thermostat JavaScript Challenge -",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedPRO16/Thermostat_New_JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RedPRO16/Thermostat_New_JS/issues"
+  },
+  "homepage": "https://github.com/RedPRO16/Thermostat_New_JS#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jasmine": "^4.4.0"
+  }
+}

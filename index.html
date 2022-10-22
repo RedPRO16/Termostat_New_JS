@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Thermostat</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <section>
+      <h1 id="temperature"></h1>
+      <p>
+        <button id="temperature-increase">+</button>
+        <button id="temperature-decrease">-</button>
+        <button id="temperature-reset">reset</button>
+        power saving mode is <span id="power-saving-status">on</span>
+        <button id="powersaving-on">PSM on</button>
+        <button id="powersaving-off">PSM off</button>
+      </p>
+      <section>
+        <h1>Current temperature: <span id="current-temperature">Choose Below</span></h1>
+        <select id="current-city">
+          <option value="london">London</option>
+          <option value="paris">Paris</option>
+          <option value="tokyo">Tokyo</option>
+        </select>
+      </section>
+
+    </section>
+    <script src="src/thermostat.js"></script>
+    <script>
+    $(document).ready(function() { 
+
+     var thermostat = new Thermostat();
+     updateTemperature()
+
+     $('#temperature-increase').on('click', function() {
+       thermostat.increase();
+       updateTemperature()
+     })
+
+     $('#temperature-decrease').on('click', function() {
+       thermostat.decrease();
+       updateTemperature()
+     });
+
+     $('#temperature-reset').on('click',function() {
+       thermostat.reset();
+       updateTemperature()
+     })
+
+     $('#powersaving-on').on('click', function(){
+       thermostat.switchPowerSavingModeOn()
+       $('#power-saving-status').text('on')
+       updateTemperature()
+     })
+
+     $('#powersaving-off').on('click', function(){
+       thermostat.switchPowerSavingModeOff()
+       $('#power-saving-status').text('off')
+       updateTemperature()
+     })
+
+     $('#current-city').change(function() {
+       var city = $('#current-city').val();
+       $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric', function(data) {
+       $('#current-temperature').text(data.main.temp)
+       })
+      })
+
+     function updateTemperature() {
+      $('#temperature').text('Temperature: ' + thermostat.temperature)
+      if(thermostat.energyUsage() === 'Low-usage') {
+        $('#temperature').css('color', 'green')
+      } else if (thermostat.energyUsage() === 'Medium-usage') {
+        $('#temperature').css('color', 'orange')
+      } else if (thermostat.energyUsage() === 'High-usage') {
+        $('#temperature').css('color', 'red')
+      }
+    };
+
+    });
+    </script>
+  </body>
+</html>
